@@ -4,7 +4,7 @@ import {AiFillClockCircle} from 'react-icons/ai'
 import { useStateProvider } from '../utils/stateProvider'
 import axios from 'axios'
 import { reducerCases } from '../utils/constants'
-function Body() {
+function Body({headerBackground}) {
   const [{token,selectedPlayListId,selectedPlaylist},dispatch]=useStateProvider()
   console.log(selectedPlayListId)
   useEffect(()=>{
@@ -39,7 +39,7 @@ function Body() {
   getInitialPlaylist();
 },[token,dispatch,selectedPlayListId])
   return (
-    <Container>
+    <Container headerBackground={headerBackground}>
       {selectedPlaylist&&(
         <><div className="playlist">
           <div className="image">
@@ -101,5 +101,70 @@ function Body() {
     </Container>
   )
 }
-const Container= styled.div``
+const Container= styled.div`
+.playlist{
+  margin: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap:2rem;
+  .image{
+    img{
+      height:15rem;
+      box-shadow:rgba(0,0,0,0.25) 0px 25px 50px -12px;
+    }
+  }
+  .details{
+     display:flex;
+     flex-direction:column;
+     gap: 1rem;
+     color:#e0dede;
+     .title{
+      color:white;
+      font-size:4rem;
+     }
+  }
+}
+.list{
+  .header__row{
+    display:grid;
+    grid-template-columns:0.3fr 3fr 2fr 0.1fr;
+    color:#dddcdc;
+    margin:1rem 0 0 0;
+    position:sticky;
+    top:15vh;
+    padding:1rem 3rem;
+    transition: 0.3s ease-in-out;
+    background-color: ${({headerBackground})=>headerBackground? "#000000dc":"none"};
+  }
+  .tracks{
+    margin:0 2rem;
+    display: flex;
+    flex-direction:column;
+    margin-bottom:5rem;
+    .row{
+      padding:0.5rem 1rem;
+      display:grid;
+      grid-template-columns:0.3fr 3.1fr 1.9fr 0.1fr;
+      &:hover{
+        background-color:rgba(0,0,0,0.7);
+      }
+      .col{
+        display:flex;
+        align-itens:center;
+        color:#dddcdc;
+        img{
+          height:40px;
+        }
+      }
+      .detail{
+        display:flex;
+        gap:1rem;
+        .info{
+          display:flex;
+          flex-direction:column;
+        }
+      }
+    }
+  }
+}`
 export default Body
