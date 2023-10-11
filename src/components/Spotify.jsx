@@ -67,7 +67,15 @@ grid-template-rows:85vh 15vh;
     background:linear-gradient(transparent,rgba(0,0,0,1));
     background-color:rgb(32,87,100)
     .body{
-      overflow:scroll;
+      width:100%;
+      height:100%;
+      overflow:auto;
+      &::-webkit-scrollbar{
+        width:0.7rem;
+        &-thumb{
+            background-color:rgba(255,255,255,0.6)
+        }
+    }
     }
 }
 `

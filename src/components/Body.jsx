@@ -37,7 +37,11 @@ function Body({headerBackground}) {
     dispatch({type:reducerCases.SET_PLAYLIST,selectedPlaylist})
   }
   getInitialPlaylist();
-},[token,dispatch,selectedPlayListId])
+},[token,dispatch,selectedPlayListId]);
+const msToMinutesToSeconds = (ms)=>{
+const minutes= Math.floor(ms/60000);
+const seconds= ((ms%60000)/1000).toFixed(0);
+return minutes + ":" + (seconds <10 ? "0":"")+seconds}
   return (
     <Container headerBackground={headerBackground}>
       {selectedPlaylist&&(
@@ -89,7 +93,7 @@ function Body({headerBackground}) {
                   <span>{album}</span>
                 </div>
                 <div className="col">
-                  <span>{duration}</span>
+                  <span>{msToMinutesToSeconds(duration)}</span>
                 </div>
 
               </div>)
@@ -131,7 +135,7 @@ const Container= styled.div`
     color:#dddcdc;
     margin:1rem 0 0 0;
     position:sticky;
-    top:15vh;
+    top:18vh;
     padding:1rem 3rem;
     transition: 0.3s ease-in-out;
     background-color: ${({headerBackground})=>headerBackground? "#000000dc":"none"};
