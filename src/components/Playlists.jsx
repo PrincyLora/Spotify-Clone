@@ -22,17 +22,16 @@ function Playlists() {
         getPlaylistData()
 
     },[token,dispatch])
+
+    const changeCurrentPlaylist = (selectedPlaylistId)=>{
+        console.log("here "+selectedPlaylistId)
+        dispatch({type:reducerCases.SET_PLAYLIST_ID,selectedPlayListId:selectedPlaylistId})
+    }
   return (
     <Container>
       <ul>
         {playlists.map(({name,id})=>{
-            return <li key={id}>{name}</li>
-        })}
-         {playlists.map(({name,id})=>{
-            return <li key={id}>{name}</li>
-        })}
-         {playlists.map(({name,id})=>{
-            return <li key={id}>{name}</li>
+            return <li onClick={()=>changeCurrentPlaylist(id)} key={id}>{name}</li>
         })}
       </ul>
     </Container>

@@ -21,7 +21,7 @@ function Body({headerBackground}) {
       id:response.data.id,
       name: response.data.name,
       description: response.data.description.startsWith("<a")?"":response.data.description,
-      image:response.data.images[0].url,
+      image:response.data.images[0]?.url,
       tracks:response.data.tracks.items.map(({track})=>({
         id:track.id,
         name:track.name,
